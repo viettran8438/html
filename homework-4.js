@@ -434,7 +434,7 @@ function setCookie(name, cvalue, expiryDays){
   document.cookie = name + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-function getCookie{
+function getCookie (name) {
     var cookieName = name + "=";
     var cookies = document.cookie.split(';');
 
@@ -447,7 +447,7 @@ function getCookie{
         return cookie.substring(cookieName.length, cookie.length);
     }
   }
-  return " ";
+  return "";
 }
 
 var inputs = [
@@ -461,14 +461,14 @@ var inputs = [
   {id: "city", cookieName: "city"},
   {id: "zcode", cookieName: "zipCode"},
   {id: "email", cookieName: "email"},
-  {id: "uname", cookieName: "userName"},
+  {id: "user", cookieName: "userName"},
 ]
 
 inputs.forEach(function(input){
   var inputElement = document.getElementById(input.id);
   //prefill input fields with value from the cookie
   var cookieValue = getCookie(input.cookieName);
-  if (cookieValue !== " "){
+  if (cookieValue !== ""){
     inputElement.value = cookieValue;
   }
 
@@ -481,11 +481,11 @@ inputs.forEach(function(input){
 
 //greet the user with their name + message
 var firstName = getCookie("firstName");
-if (firstName !== " ") {
+if (firstName !== "") {
   document.getElementById("welcome1").innerHTML = "Welcome back, " + firstName + "! </br>";
   document.getElementById("welcome2").innerHTML = "<a href='#' id='new-user'>Not " + firstName + "? Click here to start a new form.";
 
-  document.getElementById("new-user").addEventListener = ("click", function() {
+  document.getElementById("new-user").addEventListener("click", function() {
     inputs.forEach(function(input){
       setCookie(input.cookieName, "", -1);
     })
