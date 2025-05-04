@@ -479,20 +479,6 @@ inputs.forEach(function(input){
 
 });
 
-//greet the user with their name + message
-var firstName = getCookie("firstName");
-if (firstName !== "") {
-  document.getElementById("welcome1").innerHTML = "Welcome back, " + firstName + "! </br>";
-  document.getElementById("welcome2").innerHTML = "<a href='#' id='new-user'>Not " + firstName + "? Click here to start a new form.";
-
-  document.getElementById("new-user").addEventListener("click", function() {
-    inputs.forEach(function(input){
-      setCookie(input.cookieName, "", -1);
-    })
-    location.reload();
-  })
-}
-
 // get references
 var rememberMeBox = document.getElementById("rememberMe");
 var fnameInput = document.getElementById("fname");
