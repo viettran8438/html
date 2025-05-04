@@ -20,8 +20,14 @@ Description: MIS3371 Homework 4, Patient Registration Form.
         <p>Today's Date: <span id="today"></span></p>
     </td>
     </div>
+<!--inserts welcome message to the user-->
+<center>
+    <span id="welcome1"></span>
+    <span id="welcome2"></span>
+</center>
+<!--iframe-->
 <div class="iframe-container">
-    <iframe class="frame" src="https://www.houstonhumane.org/" frameborder="0"></iframe>
+    <iframe class="frame" src="https://www.dshs.texas.gov/influenza-flu/influenza-flu-vaccination" frameborder="0"></iframe>
 </div>
 <!--Form Starts-->
 </head>
@@ -226,7 +232,7 @@ Description: MIS3371 Homework 4, Patient Registration Form.
             <button type="reset">CLEAR AND START OVER</button>
             <button type="submit" name="Submit" id="submit" value="Submit">Submit</button>
             <button type="button" name="Review" id="Review" value="Review" onclick="reviewInput()">Review</button>
-            <button type="button" name="Validate" id="Validate" value="Validate" onclick="validateForm()">Validate</button>
+            <button type="button" name="Validate" id="Validate" value="Validate" onclick="validateEverything()">Validate</button>
     </div>
     <div class="pword-message">
         <span id="msg1"></span><br/>
