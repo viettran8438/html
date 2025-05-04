@@ -492,3 +492,66 @@ if (firstName !== "") {
     location.reload();
   })
 }
+
+// get references
+var rememberMeBox = document.getElementById("rememberMe");
+var fnameInput = document.getElementById("fname");
+var welcome2 = document.getElementById("welcome2");
+
+// load saved name from cookie
+var savedName = getCookie("firstName");
+
+// if a saved name exists, prefill the input and show new user checkbox
+if (savedName !== "") {
+  fnameInput.value = savedName;
+
+  // welcome message
+  document.getElementById("welcome1").innerHTML = "Welcome back, " + savedName + "!<br>";
+
+  // create new user checkbox
+  var newUserCheckbox = document.createElement("input");
+  newUserCheckbox.type = "checkbox";
+  newUserCheckbox.id = "newUserCheckbox";
+
+  var newUserLabel = document.createElement("label");
+  newUserLabel.htmlFor = "newUserCheckbox";
+  newUserLabel.innerHTML = ` Not ${savedName}? Check this to start as a new user.`;
+
+  welcome2.appendChild(newUserCheckbox);
+  welcome2.appendChild(newUserLabel);
+
+  newUserCheckbox.addEventListener("change", function () {
+    if (this.checked) {
+      // Clear cookies
+      inputs.forEach(function (input) {
+        setCookie(input.cookieName, "", -1);
+      });
+      location.reload();
+    }
+  });
+}
+
+// save cookie on first name input only if Remember Me is checked
+fnameInput.addEventListener("input", function () {
+  if (rememberMeBox.checked) {
+    setCookie("firstName", fnameInput.value, 30);
+  }
+});
+
+// handle change in Remember Me checkbox
+rememberMeBox.addEventListener("change", function () {
+  if (!this.checked) {
+    // remove all cookies
+    inputs.forEach(function (input) {
+      setCookie(input.cookieName, "", -1);
+    });
+  } else {
+    // re-save current values
+    inputs.forEach(function (input) {
+      var el = document.getElementById(input.id);
+      if (el) {
+        setCookie(input.cookieName, el.value, 30);
+      }
+    });
+  }
+});
